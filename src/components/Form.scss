@@ -19,6 +19,7 @@
   &__button {
     margin-top: 1rem;
     cursor: pointer;
+    color: rgb(188, 0, 0);
   }
 
   &__more-info {
@@ -32,8 +33,10 @@
   }
 
   &--profile {
-    textarea {
+    &__textarea {
       width: 100%;
+      resize: none;
+      padding: .5rem;
     }
   }
 }

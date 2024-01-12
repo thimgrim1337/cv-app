@@ -1,0 +1,27 @@
+.cv-preview {
+  width: 21cm;
+  min-height: 95%;
+  padding-inline: 2rem;
+  font-size: 0.8rem;
+  border: 2px solid rgb(210, 210, 210);
+  background-color: #fff;
+}
+
+.personal-info {
+  &__title {
+    background-color: #eee;
+    padding: 0.25rem 1rem;
+    font-weight: normal;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0;
+    width: 50%;
+  }
+}
+
+.profile-info {
+  color: #7e7e7e;
+}

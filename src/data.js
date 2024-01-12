@@ -52,3 +52,7 @@ export const GENERAL_INFO = [
     },
   ],
 ];
+
+export const PROFILE_INFO = {
+  text: 'Krótka informacja na górze CV, która podsumowuje odpowiednie doświadczenie i kwalifikacje w 4-6 zdaniach.',
+};

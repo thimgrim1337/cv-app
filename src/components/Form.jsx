@@ -5,7 +5,7 @@ export function FormInput({ id, type, text, onChange }) {
   return (
     <>
       <label className='form__label' htmlFor={id}>
-        {text}{' '}
+        {text}
         <input
           className='form__input'
           type={type}
@@ -22,7 +22,7 @@ export default function Form({ className, children, title, text }) {
   return (
     <form className={className} action='#'>
       <h2 className='form__title'>{title}</h2>
-      <p className='form__text'>{text}</p>
+      {text && <p className='form__text'>{text}</p>}
       {children}
     </form>
   );
