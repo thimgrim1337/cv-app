@@ -1,4 +1,7 @@
 export const GENERAL_INFO = [
+  {
+    title: 'Dane osobowe',
+  },
   [
     {
       text: 'Imię',
@@ -10,15 +13,13 @@ export const GENERAL_INFO = [
       id: 'lastName',
       type: 'text',
     },
-  ],
-
-  [
     {
       text: 'E-mail',
       id: 'email',
       type: 'email',
     },
   ],
+
   [
     {
       text: 'Numer telefonu',
@@ -54,5 +55,42 @@ export const GENERAL_INFO = [
 ];
 
 export const PROFILE_INFO = {
+  title: 'Profil osobisty',
   text: 'Krótka informacja na górze CV, która podsumowuje odpowiednie doświadczenie i kwalifikacje w 4-6 zdaniach.',
 };
+
+export const WORK_INFO = [
+  {
+    title: 'Doświadczenie zawodowe',
+    text: 'Pochwal się swoimi osiągnięciami, opisując swoje codzienne obowiązki w 3-6 zdaniach.',
+  },
+  [
+    {
+      text: 'Stanowisko',
+      id: 'occupation',
+      type: 'text',
+    },
+    {
+      text: 'Firma',
+      id: 'company',
+      type: 'text',
+    },
+
+    {
+      text: 'Lokalizacja',
+      id: 'location',
+      type: 'text',
+    },
+
+    {
+      text: 'Data rozpoczęcia',
+      id: 'startDate',
+      type: 'date',
+    },
+    {
+      text: 'Data zakończenia',
+      id: 'endDate',
+      type: 'date',
+    },
+  ],
+];

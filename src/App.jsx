@@ -1,11 +1,10 @@
-import Form from './components/Form';
+import Form, { FormSection, FormTextarea } from './components/Form';
 import CVPreview from './components/CVPreview';
-import { FormInput } from './components/Form';
-import { GENERAL_INFO, PROFILE_INFO } from './data';
+import { GENERAL_INFO, PROFILE_INFO, WORK_INFO } from './data';
 import { useState } from 'react';
+import ToggleVisibility from './components/ToggleVisibility';
 
 function App() {
-  const [isHide, setIsHide] = useState(true);
   const [generalInfo, setGeneralInfo] = useState({
     firstName: '',
     lastName: '',
@@ -19,7 +18,15 @@ function App() {
   });
   const [profileInfo, setProfileInfo] = useState('');
 
-  const clickHandle = () => setIsHide(!isHide);
+  // const [workItem, setWorkItem] = useState({
+  //   occupation: '',
+  //   company: '',
+  //   location: '',
+  //   startDate: '',
+  //   endDate: '',
+  // });
+  // const [workList, setWorkList] = useState([]);
+
   const generalInfoChangeHandle = (e) => {
     const { name, value } = e.target;
     setGeneralInfo((prevGeneralInfo) => ({
@@ -32,57 +39,48 @@ function App() {
     setProfileInfo(e.target.value);
   };
 
+  // const workInfoChangeHandle = (e) => {
+  //   const { name, value } = e.target;
+  //   setWorkItem((prevWorkItem) => ({ ...prevWorkItem, [name]: value }));
+  // };
+
+  // const addWorkHandle = () => {
+  //   const newItem = 'Item';
+  //   setWorkList((prevList) => [...prevList, newItem]);
+  // };
+
   return (
     <>
       <header className='header'>
         <h1 className='header__title'>CV Generator</h1>
       </header>
       <aside className='aside'>
-        <Form className={'form form--general-info'} title={'Dane osobowe'}>
-          <div className='form__row'>
-            {GENERAL_INFO[0].map((info) => (
-              <FormInput
-                key={info.id}
-                {...info}
+        <Form>
+          <FormSection
+            className={'form__personal-info'}
+            {...GENERAL_INFO[0]}
+            fields={GENERAL_INFO[1]}
+            onChange={generalInfoChangeHandle}
+          >
+            <ToggleVisibility btnText={'Pokaż więcej opcji'}>
+              <FormSection
+                className={'more-info'}
+                fields={GENERAL_INFO[2]}
                 onChange={generalInfoChangeHandle}
               />
-            ))}
-          </div>
-          <div className='form__row'>
-            {GENERAL_INFO[1].map((info) => (
-              <FormInput
-                key={info.id}
-                {...info}
-                onChange={generalInfoChangeHandle}
-              />
-            ))}
-          </div>
-          <p className='form__button' onClick={clickHandle}>
-            Pokaż więcej opcji
-          </p>
-          <div className={isHide ? 'form__more-info hide' : 'form__more-info'}>
-            {GENERAL_INFO[2].map((info) => (
-              <FormInput
-                key={info.id}
-                {...info}
-                onChange={generalInfoChangeHandle}
-              />
-            ))}
-          </div>
-        </Form>
-        <Form
-          className={'form form--profile'}
-          title={'Profil osobisty'}
-          text={PROFILE_INFO.text}
-        >
-          <textarea
-            className={'form--profile__textarea'}
-            name='profile'
-            id=''
-            cols='30'
-            rows='10'
-            onChange={profileInfoChangeHandle}
-          ></textarea>
+            </ToggleVisibility>
+          </FormSection>
+          <FormSection className={'form__profile-info'} {...PROFILE_INFO}>
+            <FormTextarea onChange={profileInfoChangeHandle} />
+          </FormSection>
+          <FormSection className={'work-info'} {...WORK_INFO[0]}>
+            <ul className='work-list'></ul>
+            <ToggleVisibility btnText={'Dodaj doświadczenie zawodowe'}>
+              <FormSection className={'more-info'} fields={WORK_INFO[1]}>
+                <FormTextarea label={'Podsumowanie'} />
+              </FormSection>
+            </ToggleVisibility>
+          </FormSection>
         </Form>
       </aside>
       <main className='main flex flex-center'>

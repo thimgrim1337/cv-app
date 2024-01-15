@@ -2,14 +2,12 @@
   text-align: left;
   padding: 2rem;
 
-  &__row {
-    display: flex;
+  &__labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
 
-  &__label {
-    width: 100%;
-  }
 
   &__input {
     width: 100%;
@@ -21,22 +19,24 @@
     cursor: pointer;
     color: rgb(188, 0, 0);
   }
+}
 
-  &__more-info {
+
+.work-list {
+  &__new-work {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-
-    &.hide {
-      display: none;
-    }
   }
+}
 
-  &--profile {
-    &__textarea {
-      width: 100%;
-      resize: none;
-      padding: .5rem;
-    }
-  }
+textarea {
+  width: 100%;
+  height: 13rem;
+  resize: none;
+  padding: 0.5rem;
+}
+
+label[for='email'],
+label[for='location'] {
+  grid-column: 2 span;
 }
