@@ -92,5 +92,10 @@ export const WORK_INFO = [
       id: 'endDate',
       type: 'date',
     },
+    {
+      text: 'Pracuję obecnie',
+      id: 'isWorking',
+      type: 'checkbox',
+    },
   ],
 ];

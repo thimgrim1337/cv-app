@@ -30,12 +30,13 @@ export function FormSection({
     <div className={className}>
       {title && <h2 className='form__title'>{title}</h2>}
       {text && <p className='form__text'>{text}</p>}
-      <div className='form__labels'>
-        {fields &&
-          fields.map((field) => (
+      {fields && (
+        <div className='form__labels'>
+          {fields.map((field) => (
             <FormInput key={field.id} {...field} onChange={onChange} />
           ))}
-      </div>
+        </div>
+      )}
       {children}
     </div>
   );
@@ -43,12 +44,12 @@ export function FormSection({
 
 export function FormTextarea({ label, onChange }) {
   return (
-    <>
+    <div className='form__textarea'>
       <label>
         {label}
         <textarea onChange={onChange}></textarea>
       </label>
-    </>
+    </div>
   );
 }
 

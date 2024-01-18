@@ -3,6 +3,7 @@ import CVPreview from './components/CVPreview';
 import { GENERAL_INFO, PROFILE_INFO, WORK_INFO } from './data';
 import { useState } from 'react';
 import ToggleVisibility from './components/ToggleVisibility';
+import WorkList from './components/WorkList';
 
 function App() {
   const [generalInfo, setGeneralInfo] = useState({
@@ -25,7 +26,6 @@ function App() {
   //   startDate: '',
   //   endDate: '',
   // });
-  // const [workList, setWorkList] = useState([]);
 
   const generalInfoChangeHandle = (e) => {
     const { name, value } = e.target;
@@ -42,11 +42,6 @@ function App() {
   // const workInfoChangeHandle = (e) => {
   //   const { name, value } = e.target;
   //   setWorkItem((prevWorkItem) => ({ ...prevWorkItem, [name]: value }));
-  // };
-
-  // const addWorkHandle = () => {
-  //   const newItem = 'Item';
-  //   setWorkList((prevList) => [...prevList, newItem]);
   // };
 
   return (
@@ -73,13 +68,9 @@ function App() {
           <FormSection className={'form__profile-info'} {...PROFILE_INFO}>
             <FormTextarea onChange={profileInfoChangeHandle} />
           </FormSection>
+
           <FormSection className={'work-info'} {...WORK_INFO[0]}>
-            <ul className='work-list'></ul>
-            <ToggleVisibility btnText={'Dodaj doświadczenie zawodowe'}>
-              <FormSection className={'more-info'} fields={WORK_INFO[1]}>
-                <FormTextarea label={'Podsumowanie'} />
-              </FormSection>
-            </ToggleVisibility>
+            <WorkList fields={WORK_INFO[1]} />
           </FormSection>
         </Form>
       </aside>

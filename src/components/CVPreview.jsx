@@ -50,7 +50,7 @@ export default function CVPreview({ generalInfo, profileInfo }) {
       <h2 className='cv-preview__title'>
         {generalInfo.firstName} {generalInfo.lastName}
       </h2>
-      <div className='profile-info'>{profileInfo}</div>
+      <p className='profile-info'>{profileInfo}</p>
       <div className='personal-info'>
         <h3 className='personal-info__title'>Dane osobowe</h3>
         <p className='info'>{fullName}</p>
