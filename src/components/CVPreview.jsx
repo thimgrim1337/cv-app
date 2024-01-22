@@ -60,6 +60,7 @@ export default function CVPreview({ generalInfo, profileInfo }) {
         <p className='info'>{birth}</p>
         <p className='info'>{nationality}</p>
       </div>
+      <div className='work-info'></div>
     </div>
   );
 }

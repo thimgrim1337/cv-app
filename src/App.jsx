@@ -18,14 +18,7 @@ function App() {
     nationality: '',
   });
   const [profileInfo, setProfileInfo] = useState('');
-
-  // const [workItem, setWorkItem] = useState({
-  //   occupation: '',
-  //   company: '',
-  //   location: '',
-  //   startDate: '',
-  //   endDate: '',
-  // });
+  const [workList, setWorkList] = useState([]);
 
   const generalInfoChangeHandle = (e) => {
     const { name, value } = e.target;
@@ -38,11 +31,6 @@ function App() {
   const profileInfoChangeHandle = (e) => {
     setProfileInfo(e.target.value);
   };
-
-  // const workInfoChangeHandle = (e) => {
-  //   const { name, value } = e.target;
-  //   setWorkItem((prevWorkItem) => ({ ...prevWorkItem, [name]: value }));
-  // };
 
   return (
     <>
@@ -69,7 +57,7 @@ function App() {
             <FormTextarea onChange={profileInfoChangeHandle} />
           </FormSection>
 
-          <FormSection className={'work-info'} {...WORK_INFO[0]}>
+          <FormSection className={'form__work-info'} {...WORK_INFO[0]}>
             <WorkList fields={WORK_INFO[1]} />
           </FormSection>
         </Form>

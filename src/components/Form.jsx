@@ -12,6 +12,7 @@ function FormInput({ id, type, text, onChange }) {
           name={id}
           id={id}
           onChange={onChange}
+          maxLength={'25'}
         />
       </label>
     </>

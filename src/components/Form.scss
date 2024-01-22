@@ -42,6 +42,18 @@ textarea {
 }
 
 label[for='email'],
-label[for='location'] {
+label[for='location'],
+label[for='isWorking'] {
   grid-column: 2 span;
+}
+
+label[for='isWorking'] {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  input {
+    width: 1.2rem;
+    order: -1;
+  }
 }

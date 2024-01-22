@@ -4,45 +4,40 @@ import { useState } from 'react';
 import uuid from 'react-uuid';
 import { FormSection } from './Form';
 import ToggleVisibility from './ToggleVisibility';
+import './WorkList.scss';
 
 export default function WorkList({ fields }) {
-  const [isShow, setIsShow] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
-  const [workList, setWorkList] = useState([]);
-  const [workItem, setWorkItem] = useState({
+  const initialValue = {
     occupation: '',
     company: '',
     location: '',
     startDate: '',
     endDate: '',
-  });
+  };
+
+  const [isShow, setIsShow] = useState(false);
+  const [workList, setWorkList] = useState([]);
+  const [workItem, setWorkItem] = useState(initialValue);
 
   function showHandle(e) {
     e.preventDefault();
     setIsShow(true);
 
     if (isShow && workItem.company) {
-      addWork();
+      addWorkHandle();
       setIsShow(false);
     }
   }
 
-  function editHandle(e) {
-    e.preventDefault();
-    setIsEdit(!isEdit);
+  function addWorkHandle() {
+    const id = uuid().slice(0, 8);
+    setWorkList((prevWorkList) => [...prevWorkList, { id: id, ...workItem }]);
   }
 
-  function addWork() {
-    setWorkList((prevWorkList) => [
-      ...prevWorkList,
-      { id: uuid(), ...workItem },
-    ]);
-  }
-
-  function editWork(e, id) {
-    setIsEdit(true);
-
+  function editWorkHandle(e, id) {
     const { name, value } = e.target;
+
+    console.log(id);
 
     setWorkList((current) =>
       current.map((item) => {
@@ -63,16 +58,13 @@ export default function WorkList({ fields }) {
     <>
       <ul className='work-list'>
         {workList.map((work) => (
-          <li key={work.id}>
-            {work.company}
-            {isEdit && (
-              <FormSection
-                fields={fields}
-                onChange={(e) => editWork(e, work.id)}
-              />
-            )}
-            <button onClick={editHandle}>Edit</button>
-          </li>
+          <WorkListItem
+            key={work.id}
+            id={work.id}
+            company={work.company}
+            fields={fields}
+            onChange={editWorkHandle}
+          />
         ))}
       </ul>
       <ToggleVisibility
@@ -80,8 +72,36 @@ export default function WorkList({ fields }) {
         onClick={showHandle}
         isShowed={isShow}
       >
-        <FormSection fields={fields} onChange={workInfoChangeHandle} />
+        <FormSection
+          className={'work-info__new-work'}
+          fields={fields}
+          onChange={workInfoChangeHandle}
+        />
       </ToggleVisibility>
     </>
+  );
+}
+
+function WorkListItem({ id, company, fields, onChange }) {
+  const [isEdit, setIsEdit] = useState(false);
+  function editHandle(e) {
+    e.preventDefault();
+    setIsEdit(!isEdit);
+  }
+
+  return (
+    <li className='work-list__item'>
+      {company}
+      <button className={'work-list__btn'} onClick={editHandle}>
+        Edit
+      </button>
+      {isEdit && (
+        <FormSection
+          className={'work-list__edit-work'}
+          fields={fields}
+          onChange={(e) => onChange(e, id)}
+        />
+      )}
+    </li>
   );
 }
