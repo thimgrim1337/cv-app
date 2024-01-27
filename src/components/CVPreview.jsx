@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-
+import { getMonthYear } from '../utils';
 import './CVPreview.scss';
 
-export default function CVPreview({ generalInfo, profileInfo }) {
+export default function CVPreview({ generalInfo, workList }) {
   let fullName = (generalInfo.firstName || generalInfo.lastName) && (
     <>
       Imię i nazwisko:{' '}
@@ -11,6 +11,7 @@ export default function CVPreview({ generalInfo, profileInfo }) {
       </span>
     </>
   );
+
   let address = (generalInfo.address ||
     generalInfo.postal ||
     generalInfo.city) && (
@@ -45,14 +46,15 @@ export default function CVPreview({ generalInfo, profileInfo }) {
       Narodowość: <span className='bold'>{generalInfo.nationality}</span>
     </>
   );
+
   return (
     <div className='cv-preview '>
       <h2 className='cv-preview__title'>
         {generalInfo.firstName} {generalInfo.lastName}
       </h2>
-      <p className='profile-info'>{profileInfo}</p>
+      <p className='profile-info'>{generalInfo.profile}</p>
       <div className='personal-info'>
-        <h3 className='personal-info__title'>Dane osobowe</h3>
+        <h3 className='personal-info__title title--section'>Dane osobowe</h3>
         <p className='info'>{fullName}</p>
         <p className='info'>{address}</p>
         <p className='info'>{tel}</p>
@@ -60,7 +62,29 @@ export default function CVPreview({ generalInfo, profileInfo }) {
         <p className='info'>{birth}</p>
         <p className='info'>{nationality}</p>
       </div>
-      <div className='work-info'></div>
+      <div className='work-info'>
+        <h3 className={'work-info__title title--section'}>
+          Doświadczenie zawodowe
+          {console.log(workList[0] && workList[0].isWorking)}
+        </h3>
+        {workList.map((work) => (
+          <div key={work.id} className='work-item'>
+            <p className='work-item__dates bold'>
+              {work.startDate && getMonthYear(work.startDate)} -
+              {work.isWorking
+                ? ' obecnie'
+                : work.endDate && getMonthYear(work.endDate)}
+            </p>
+            <div className='work-item__details'>
+              <p className='info bold'>{work.occupation}</p>
+              <p className='info'>
+                {work.company} {work.location}
+              </p>
+              <p className='info'> {work.details}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

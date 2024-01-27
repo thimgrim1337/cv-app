@@ -1,18 +1,26 @@
+$zoom: 0.7;
+
 .cv-preview {
+  position: relative;
   width: 21cm;
-  min-height: 95%;
-  padding-inline: 2rem;
-  font-size: 0.8rem;
-  border: 2px solid rgb(210, 210, 210);
+  height: 29.7cm;
+  padding-inline: 3rem;
+  font-size: 1rem;
   background-color: #fff;
+  border: 1px solid #ccc;
+  transform: scale($zoom);
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 20px;
+    left: 0;
+    background-color: #3f3f3f;
+  }
 
   .personal-info {
-    &__title {
-      background-color: #eee;
-      padding: 0.25rem 1rem;
-      font-weight: normal;
-    }
-
     .info {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -23,7 +31,26 @@
 
   .profile-info {
     color: #7e7e7e;
-    border: 1px solid red;
     max-width: 50%;
+  }
+
+  .work-item {
+    display: flex;
+    gap: 2rem;
+
+    &__dates {
+      max-width: 250px;
+    }
+
+    &__details {
+    }
+  }
+
+  .title {
+    &--section {
+      padding: 0.5rem 0;
+      font-weight: bold;
+      border-bottom: 3px solid #ccc;
+    }
   }
 }

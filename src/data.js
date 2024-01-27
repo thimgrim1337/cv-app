@@ -57,6 +57,7 @@ export const GENERAL_INFO = [
 export const PROFILE_INFO = {
   title: 'Profil osobisty',
   text: 'Krótka informacja na górze CV, która podsumowuje odpowiednie doświadczenie i kwalifikacje w 4-6 zdaniach.',
+  id: 'profile',
 };
 
 export const WORK_INFO = [
@@ -98,4 +99,11 @@ export const WORK_INFO = [
       type: 'checkbox',
     },
   ],
+];
+
+export const EDUCATION_INFO = [
+  {
+    title: 'Edukacja',
+    text: 'Dodaj swoje wykształcenie, niezależnie od tego, czy jest średnie, czy wyższe. W razie potrzeby dodaj odpowiednie kursy, projekty lub osiągnięcia (np. wyniki).',
+  },
 ];
