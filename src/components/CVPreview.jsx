@@ -65,7 +65,6 @@ export default function CVPreview({ generalInfo, workList }) {
       <div className='work-info'>
         <h3 className={'work-info__title title--section'}>
           Doświadczenie zawodowe
-          {console.log(workList[0] && workList[0].isWorking)}
         </h3>
         {workList.map((work) => (
           <div key={work.id} className='work-item'>

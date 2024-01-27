@@ -1,5 +1,13 @@
 /* eslint-disable react/prop-types */
-export default function FormInput({ id, type, text, min, onChange, listItem }) {
+export default function FormInput({
+  id,
+  type,
+  text,
+  min,
+  onChange,
+  isDisabled,
+  listItem,
+}) {
   return (
     <>
       <label className='form__label' htmlFor={id}>
@@ -13,6 +21,8 @@ export default function FormInput({ id, type, text, min, onChange, listItem }) {
           maxLength={'25'}
           min={min}
           value={listItem && listItem[id]}
+          checked={listItem && listItem['isWorking']}
+          disabled={id === 'endDate' && isDisabled}
         />
       </label>
     </>

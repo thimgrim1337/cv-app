@@ -39,6 +39,7 @@ function FormListItem({
   id,
   company,
   occupation,
+  isWorking,
   fields,
   onChange,
   deleteHandle,
@@ -70,6 +71,7 @@ function FormListItem({
           fields={fields}
           onChange={(e) => onChange(e, id)}
           listItem={listItem}
+          isDisabled={isWorking}
         >
           <FormTextarea
             label={'Podsumowanie'}

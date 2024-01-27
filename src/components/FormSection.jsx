@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import FormInput from './FormInput';
 
-/* eslint-disable react/prop-types */
 export default function FormSection({
   className,
   title,
@@ -8,6 +8,7 @@ export default function FormSection({
   fields,
   onChange,
   listItem,
+  isDisabled,
   children,
 }) {
   return (
@@ -22,6 +23,7 @@ export default function FormSection({
               {...field}
               onChange={onChange}
               listItem={listItem}
+              isDisabled={isDisabled}
             />
           ))}
         </div>

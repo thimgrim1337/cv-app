@@ -148,6 +148,7 @@ function App() {
                   className={'work-info__new-work'}
                   fields={WORK_INFO[1]}
                   onChange={workInfoChangeHandle}
+                  isDisabled={workItem.isWorking}
                 >
                   <FormTextarea
                     label={'Podsumowanie'}
@@ -157,6 +158,14 @@ function App() {
                 </FormSection>
               </ToggleVisibility>
             </FormList>
+          </FormSection>
+          <FormSection className={'edu-info'} {...EDUCATION_INFO[0]}>
+            <ToggleVisibility btnText={'Dodaj wykształcenie'}>
+              <FormSection
+                className={'edu-info__new-edu'}
+                fields={EDUCATION_INFO[1]}
+              ></FormSection>
+            </ToggleVisibility>
           </FormSection>
         </Form>
       </aside>

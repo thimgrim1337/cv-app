@@ -106,4 +106,36 @@ export const EDUCATION_INFO = [
     title: 'Edukacja',
     text: 'Dodaj swoje wykształcenie, niezależnie od tego, czy jest średnie, czy wyższe. W razie potrzeby dodaj odpowiednie kursy, projekty lub osiągnięcia (np. wyniki).',
   },
+  [
+    {
+      text: 'Instytucja',
+      id: 'institution',
+      type: 'text',
+    },
+    {
+      text: 'Stopień',
+      id: 'degree',
+      type: 'text',
+    },
+    {
+      text: 'Lokalizacja',
+      id: 'location',
+      type: 'text',
+    },
+    {
+      text: 'Data rozpoczęcia',
+      id: 'startDate',
+      type: 'date',
+    },
+    {
+      text: 'Data zakończenia',
+      id: 'endDate',
+      type: 'date',
+    },
+    {
+      text: 'Studiuję obecnie',
+      id: 'isStudying',
+      type: 'checkbox',
+    },
+  ],
 ];

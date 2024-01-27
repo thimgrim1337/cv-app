@@ -42,12 +42,12 @@ textarea {
 }
 
 label[for='email'],
-label[for='location'],
-label[for='isWorking'] {
+label[for='location'] {
   grid-column: 2 span;
 }
 
-label[for='isWorking'] {
+label[for='isWorking'],
+label[for='isStudying'] {
   display: flex;
   align-items: center;
   gap: 0.6rem;
