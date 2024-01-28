@@ -31,10 +31,21 @@ function App() {
     details: '',
   };
 
+  const EDU_INITIAL_VALUE = {
+    institution: '',
+    degree: '',
+    location: '',
+    startDate: '',
+    endDate: '',
+    isStudying: false,
+    details: '',
+  };
+
   const [generalInfo, setGeneralInfo] = useState(GENERAL_INITIAL_VALUE);
   const [workItem, setWorkItem] = useState(WORK_INITIAL_VALUE);
   const [workList, setWorkList] = useState([]);
-  const [isShow, setIsShow] = useState(false);
+  const [eduItem, setEduItem] = useState(EDU_INITIAL_VALUE);
+  const [eduList, setEduList] = useState([]);
 
   const generalInfoChangeHandle = (e) => {
     const { name, value } = e.target;
@@ -44,7 +55,7 @@ function App() {
     }));
   };
 
-  const workInfoChangeHandle = (e) => {
+  const workItemChangeHandle = (e) => {
     if (e.target.id === 'isWorking') {
       const { name, checked } = e.target;
       return setWorkItem((prevWorkItem) => ({
@@ -94,14 +105,52 @@ function App() {
     );
   }
 
-  function showNewItemTab(e) {
-    e.preventDefault();
-    setIsShow(true);
-
-    if (isShow) {
-      addWorkHandle();
-      setIsShow(false);
+  function eduItemChangeHandle(e) {
+    if (e.target.id === 'isStudying') {
+      const { name, checked } = e.target;
+      return setEduItem((prevEduItem) => ({
+        ...prevEduItem,
+        [name]: checked,
+      }));
     }
+
+    const { name, value } = e.target;
+    setEduItem((prevEduItem) => ({ ...prevEduItem, [name]: value }));
+  }
+
+  function addEduHandle() {
+    const id = uuid().slice(0, 8);
+    setEduList((prevEduList) => [...prevEduList, { id: id, ...eduItem }]);
+  }
+
+  function editEduHandle(e, id) {
+    if (e.target.id === 'isStudying') {
+      const { name, checked } = e.target;
+      return setEduList((prevEduList) =>
+        prevEduList.map((item) => {
+          if (item.id === id) {
+            return { ...item, [name]: checked };
+          }
+          return item;
+        })
+      );
+    }
+
+    const { name, value } = e.target;
+
+    setEduList((prevEduList) =>
+      prevEduList.map((item) => {
+        if (item.id === id) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      })
+    );
+  }
+
+  function deleteEduHandle(e, id) {
+    e.preventDefault();
+    setEduList((prevEduList) => prevEduList.filter((work) => work.id !== id));
   }
 
   return (
@@ -141,36 +190,58 @@ function App() {
             >
               <ToggleVisibility
                 btnText={'Dodaj doświadczenie zawodowe'}
-                onClick={showNewItemTab}
-                isShowed={isShow}
+                onClick={addWorkHandle}
               >
                 <FormSection
                   className={'work-info__new-work'}
                   fields={WORK_INFO[1]}
-                  onChange={workInfoChangeHandle}
+                  onChange={workItemChangeHandle}
                   isDisabled={workItem.isWorking}
                 >
                   <FormTextarea
                     label={'Podsumowanie'}
                     id={'details'}
-                    onChange={workInfoChangeHandle}
+                    onChange={workItemChangeHandle}
                   />
                 </FormSection>
               </ToggleVisibility>
             </FormList>
           </FormSection>
-          <FormSection className={'edu-info'} {...EDUCATION_INFO[0]}>
-            <ToggleVisibility btnText={'Dodaj wykształcenie'}>
-              <FormSection
-                className={'edu-info__new-edu'}
-                fields={EDUCATION_INFO[1]}
-              ></FormSection>
-            </ToggleVisibility>
+          <FormSection className={'form__edu-info'} {...EDUCATION_INFO[0]}>
+            <FormList
+              className={'edu-list'}
+              fields={EDUCATION_INFO[1]}
+              list={eduList}
+              editHandle={editEduHandle}
+              deleteHandle={deleteEduHandle}
+            >
+              <ToggleVisibility
+                btnText={'Dodaj wykształcenie'}
+                onClick={addEduHandle}
+              >
+                <FormSection
+                  className={'edu-info__new-edu'}
+                  fields={EDUCATION_INFO[1]}
+                  onChange={eduItemChangeHandle}
+                  isDisabled={eduItem.isStudying}
+                >
+                  <FormTextarea
+                    label={'Podsumowanie'}
+                    id={'details'}
+                    onChange={eduItemChangeHandle}
+                  />
+                </FormSection>
+              </ToggleVisibility>
+            </FormList>
           </FormSection>
         </Form>
       </aside>
       <main className='main flex flex-center'>
-        <CVPreview generalInfo={generalInfo} workList={workList} />
+        <CVPreview
+          generalInfo={generalInfo}
+          workList={workList}
+          eduList={eduList}
+        />
       </main>
     </>
   );

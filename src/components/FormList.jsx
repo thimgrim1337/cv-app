@@ -39,7 +39,10 @@ function FormListItem({
   id,
   company,
   occupation,
+  institution,
+  location,
   isWorking,
+  isStudying,
   fields,
   onChange,
   deleteHandle,
@@ -53,7 +56,7 @@ function FormListItem({
 
   return (
     <li className={className + '__item'}>
-      {occupation} w {company}
+      {occupation || institution} w {company || location}
       <div className={className + '__buttons'}>
         <button className={className + '__btn'} onClick={editHandle}>
           <i className='fa-solid fa-pen'></i>
@@ -71,7 +74,7 @@ function FormListItem({
           fields={fields}
           onChange={(e) => onChange(e, id)}
           listItem={listItem}
-          isDisabled={isWorking}
+          isDisabled={isWorking || isStudying}
         >
           <FormTextarea
             label={'Podsumowanie'}

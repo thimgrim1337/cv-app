@@ -21,7 +21,9 @@ export default function FormInput({
           maxLength={'25'}
           min={min}
           value={listItem && listItem[id]}
-          checked={listItem && listItem['isWorking']}
+          checked={
+            listItem && (listItem['isWorking'] || listItem['isStudying'])
+          }
           disabled={id === 'endDate' && isDisabled}
         />
       </label>
