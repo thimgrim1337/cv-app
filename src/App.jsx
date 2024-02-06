@@ -1,11 +1,12 @@
-import Form, { FormTextarea } from './components/Form';
+import Form from './components/Form/Form';
 import CVPreview from './components/CVPreview';
-import FormSection from './components/FormSection';
-import ToggleVisibility from './components/ToggleVisibility';
-import { EDUCATION_INFO, GENERAL_INFO, PROFILE_INFO, WORK_INFO } from './data';
 import { useState } from 'react';
 import uuid from 'react-uuid';
-import FormList from './components/FormList';
+import GeneralInfo from './components/GeneralInfo';
+import ProfileInfo from './components/ProfileInfo';
+import WorkInfo from './components/WorkInfo';
+import EduInfo from './components/EduInfo';
+import SkillInfo from './components/SkillInfo';
 
 function App() {
   const GENERAL_INITIAL_VALUE = {
@@ -41,11 +42,18 @@ function App() {
     details: '',
   };
 
+  const SKILL_INITIAL_VALUE = {
+    name: '',
+    level: '',
+  };
+
   const [generalInfo, setGeneralInfo] = useState(GENERAL_INITIAL_VALUE);
   const [workItem, setWorkItem] = useState(WORK_INITIAL_VALUE);
   const [workList, setWorkList] = useState([]);
   const [eduItem, setEduItem] = useState(EDU_INITIAL_VALUE);
   const [eduList, setEduList] = useState([]);
+  const [skillItem, setSkillItem] = useState(SKILL_INITIAL_VALUE);
+  const [skillList, setSkillList] = useState([]);
 
   const generalInfoChangeHandle = (e) => {
     const { name, value } = e.target;
@@ -153,6 +161,42 @@ function App() {
     setEduList((prevEduList) => prevEduList.filter((work) => work.id !== id));
   }
 
+  function skillItemChangeHandle(e) {
+    const { name, value } = e.target;
+    setSkillItem((prevSkillItem) => ({
+      ...prevSkillItem,
+      [name]: value,
+    }));
+  }
+
+  function addSkillHandle() {
+    const id = uuid().slice(0, 8);
+    setSkillList((prevSkillList) => [
+      ...prevSkillList,
+      { id: id, ...skillItem },
+    ]);
+  }
+
+  function editSkillHandle(e, id) {
+    const { name, value } = e.target;
+
+    setSkillList((prevSkillList) =>
+      prevSkillList.map((item) => {
+        if (item.id === id) {
+          return { ...item, [name]: value };
+        }
+        return item;
+      })
+    );
+  }
+
+  function deleteSkillHandle(e, id) {
+    e.preventDefault();
+    setSkillList((prevSkillList) =>
+      prevSkillList.filter((skill) => skill.id !== id)
+    );
+  }
+
   return (
     <>
       <header className='header'>
@@ -160,80 +204,29 @@ function App() {
       </header>
       <aside className='aside'>
         <Form>
-          <FormSection
-            className={'form__personal-info'}
-            {...GENERAL_INFO[0]}
-            fields={GENERAL_INFO[1]}
-            onChange={generalInfoChangeHandle}
-          >
-            <ToggleVisibility btnText={'Pokaż więcej opcji'}>
-              <FormSection
-                className={'more-info'}
-                fields={GENERAL_INFO[2]}
-                onChange={generalInfoChangeHandle}
-              ></FormSection>
-            </ToggleVisibility>
-          </FormSection>
-          <FormSection className={'form__profile-info'} {...PROFILE_INFO}>
-            <FormTextarea
-              onChange={generalInfoChangeHandle}
-              {...PROFILE_INFO}
-            />
-          </FormSection>
-          <FormSection className={'from__work-info'} {...WORK_INFO[0]}>
-            <FormList
-              className={'work-list'}
-              fields={WORK_INFO[1]}
-              editHandle={editWorkHandle}
-              deleteHandle={deleteWorkHandle}
-              list={workList}
-            >
-              <ToggleVisibility
-                btnText={'Dodaj doświadczenie zawodowe'}
-                onClick={addWorkHandle}
-              >
-                <FormSection
-                  className={'work-info__new-work'}
-                  fields={WORK_INFO[1]}
-                  onChange={workItemChangeHandle}
-                  isDisabled={workItem.isWorking}
-                >
-                  <FormTextarea
-                    label={'Podsumowanie'}
-                    id={'details'}
-                    onChange={workItemChangeHandle}
-                  />
-                </FormSection>
-              </ToggleVisibility>
-            </FormList>
-          </FormSection>
-          <FormSection className={'form__edu-info'} {...EDUCATION_INFO[0]}>
-            <FormList
-              className={'edu-list'}
-              fields={EDUCATION_INFO[1]}
-              list={eduList}
-              editHandle={editEduHandle}
-              deleteHandle={deleteEduHandle}
-            >
-              <ToggleVisibility
-                btnText={'Dodaj wykształcenie'}
-                onClick={addEduHandle}
-              >
-                <FormSection
-                  className={'edu-info__new-edu'}
-                  fields={EDUCATION_INFO[1]}
-                  onChange={eduItemChangeHandle}
-                  isDisabled={eduItem.isStudying}
-                >
-                  <FormTextarea
-                    label={'Podsumowanie'}
-                    id={'details'}
-                    onChange={eduItemChangeHandle}
-                  />
-                </FormSection>
-              </ToggleVisibility>
-            </FormList>
-          </FormSection>
+          <GeneralInfo onChange={generalInfoChangeHandle} />
+          <ProfileInfo onChange={generalInfoChangeHandle} />
+          <WorkInfo
+            editItemHandle={editWorkHandle}
+            deleteItemHandle={deleteWorkHandle}
+            createItemHandle={addWorkHandle}
+            onChange={workItemChangeHandle}
+            list={workList}
+          />
+          <EduInfo
+            editItemHandle={editEduHandle}
+            deleteItemHandle={deleteEduHandle}
+            createItemHandle={addEduHandle}
+            onChange={eduItemChangeHandle}
+            list={eduList}
+          />
+          <SkillInfo
+            editItemHandle={editSkillHandle}
+            deleteItemHandle={deleteSkillHandle}
+            createItemHandle={addSkillHandle}
+            onChange={skillItemChangeHandle}
+            list={skillList}
+          />
         </Form>
       </aside>
       <main className='main flex flex-center'>
@@ -241,6 +234,7 @@ function App() {
           generalInfo={generalInfo}
           workList={workList}
           eduList={eduList}
+          skillList={skillList}
         />
       </main>
     </>

@@ -24,9 +24,8 @@ body {
 
 #root {
   display: grid;
-  grid-template-columns: minmax(400px, 500px) auto;
+  grid-template-columns: minmax(300px, 500px) 1fr;
   grid-template-rows: auto 1fr;
-  width: 100%;
 }
 
 .header {

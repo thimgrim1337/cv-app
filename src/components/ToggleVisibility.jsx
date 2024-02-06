@@ -15,7 +15,7 @@ export default function ToggleVisibility({
     setIsShow(true);
 
     if (isShow) {
-      onClick();
+      onClick && onClick();
       setIsShow(false);
     }
   }

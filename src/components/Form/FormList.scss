@@ -1,8 +1,12 @@
-.work-list,
-.edu-list {
+.list {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  &__buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
 
   &__item {
     display: flex;
@@ -14,6 +18,15 @@
     border: 1px solid rgb(217, 217, 217);
     border-radius: 5px;
   }
+
+  // &__item-edit {
+  //   display: flex;
+  //   justify-content: space-between;
+
+  //   & .form__labels {
+  //     display: block;
+  //   }
+  // }
 
   &__btn {
     cursor: pointer;

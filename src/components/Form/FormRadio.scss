@@ -1,0 +1,48 @@
+.form__section--skill-list {
+  .list__new-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    .form__labels {
+      width: 50%;
+      display: block;
+    }
+  }
+}
+
+.radio {
+  &__input {
+    border: 1px solid #ccc;
+    height: 2.5rem;
+    display: flex;
+  }
+
+  &__value {
+    margin: 0;
+  }
+
+  input {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+
+  label {
+    flex: 1;
+    display: inline-block;
+
+    &:nth-child(n + 2)::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 70%;
+      background-color: #ccc;
+      transform: translateY(25%);
+    }
+
+    &.active {
+      background-color: red;
+    }
+  }
+}

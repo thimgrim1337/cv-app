@@ -2,7 +2,12 @@
 import { getMonthYear } from '../utils';
 import './CVPreview.scss';
 
-export default function CVPreview({ generalInfo, workList, eduList }) {
+export default function CVPreview({
+  generalInfo,
+  workList,
+  eduList,
+  skillList,
+}) {
   let fullName = (generalInfo.firstName || generalInfo.lastName) && (
     <>
       Imię i nazwisko:{' '}
@@ -94,7 +99,7 @@ export default function CVPreview({ generalInfo, workList, eduList }) {
                 ? ' obecnie'
                 : edu.endDate && getMonthYear(edu.endDate)}
             </p>
-            <div className='eduu-item__details'>
+            <div className='edu-item__details'>
               <p className='info bold'>{edu.degree}</p>
               <p className='info'>
                 {edu.institution} {edu.location}
@@ -103,6 +108,9 @@ export default function CVPreview({ generalInfo, workList, eduList }) {
             </div>
           </div>
         ))}
+      </div>
+      <div className='skill-info'>
+        <h3 className='skill-info__title title--section'>Umiejętności</h3>
       </div>
     </div>
   );

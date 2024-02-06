@@ -57,7 +57,6 @@ export const GENERAL_INFO = [
 export const PROFILE_INFO = {
   title: 'Profil osobisty',
   text: 'Krótka informacja na górze CV, która podsumowuje odpowiednie doświadczenie i kwalifikacje w 4-6 zdaniach.',
-  id: 'profile',
 };
 
 export const WORK_INFO = [
@@ -136,6 +135,47 @@ export const EDUCATION_INFO = [
       text: 'Studiuję obecnie',
       id: 'isStudying',
       type: 'checkbox',
+    },
+  ],
+];
+
+export const SKILLS_INFO = [
+  {
+    title: 'Umiejętności',
+    text: 'Opisz swoje obszary specjalizacji, koncentrując się na odpowiednich umiejętnościach twardych.',
+  },
+  [
+    {
+      text: 'Umiejętność',
+      id: 'name',
+      type: 'text',
+    },
+  ],
+  [
+    {
+      text: 'Początkujący',
+      id: 'level',
+      type: 'radio',
+    },
+    {
+      text: 'Przeciętny',
+      id: 'level',
+      type: 'radio',
+    },
+    {
+      text: 'Wprawiony',
+      id: 'level',
+      type: 'radio',
+    },
+    {
+      text: 'Doświadczony',
+      id: 'level',
+      type: 'radio',
+    },
+    {
+      text: 'Ekspert',
+      id: 'level',
+      type: 'radio',
     },
   ],
 ];
