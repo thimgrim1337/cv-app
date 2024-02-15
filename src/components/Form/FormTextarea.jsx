@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
-export default function FormTextarea({ label, id, ...props }) {
+export default function FormTextarea({ id, onValueChange, sectionName }) {
   return (
     <div className='form__textarea'>
-      <label>
-        {label}
-        <textarea name={id} maxLength={200} {...props}></textarea>
-      </label>
+      <textarea
+        id={id}
+        name={id}
+        data-section={sectionName}
+        maxLength={200}
+        onChange={onValueChange}
+      ></textarea>
     </div>
   );
 }

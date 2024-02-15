@@ -6,10 +6,10 @@ import GeneralInfo from './components/GeneralInfo';
 import ProfileInfo from './components/ProfileInfo';
 import WorkInfo from './components/WorkInfo';
 import EduInfo from './components/EduInfo';
-import SkillInfo from './components/SkillInfo';
+// import SkillInfo from './components/SkillInfo';
 
-function App() {
-  const GENERAL_INITIAL_VALUE = {
+const USER_INFO_INITIAL_VALUE = {
+  generalInfo: {
     firstName: '',
     lastName: '',
     email: '',
@@ -19,10 +19,11 @@ function App() {
     city: '',
     birth: '',
     nationality: '',
+  },
+  profileInfo: {
     profile: '',
-  };
-
-  const WORK_INITIAL_VALUE = {
+  },
+  workInfo: {
     occupation: '',
     company: '',
     location: '',
@@ -30,9 +31,8 @@ function App() {
     endDate: '',
     isWorking: false,
     details: '',
-  };
-
-  const EDU_INITIAL_VALUE = {
+  },
+  eduInfo: {
     institution: '',
     degree: '',
     location: '',
@@ -40,161 +40,93 @@ function App() {
     endDate: '',
     isStudying: false,
     details: '',
-  };
-
-  const SKILL_INITIAL_VALUE = {
+  },
+  skillInfo: {
     name: '',
     level: '',
-  };
+  },
+};
 
-  const [generalInfo, setGeneralInfo] = useState(GENERAL_INITIAL_VALUE);
-  const [workItem, setWorkItem] = useState(WORK_INITIAL_VALUE);
-  const [workList, setWorkList] = useState([]);
-  const [eduItem, setEduItem] = useState(EDU_INITIAL_VALUE);
-  const [eduList, setEduList] = useState([]);
-  const [skillItem, setSkillItem] = useState(SKILL_INITIAL_VALUE);
-  const [skillList, setSkillList] = useState([]);
+const USER_INFO_INITIAL_LISTS = {
+  workList: [],
+  eduList: [],
+  skillList: [],
+};
 
-  const generalInfoChangeHandle = (e) => {
-    const { name, value } = e.target;
-    setGeneralInfo((prevGeneralInfo) => ({
-      ...prevGeneralInfo,
-      [name]: value,
-    }));
-  };
+function generateID() {
+  return uuid().slice(0, 8);
+}
 
-  const workItemChangeHandle = (e) => {
-    if (e.target.id === 'isWorking') {
-      const { name, checked } = e.target;
-      return setWorkItem((prevWorkItem) => ({
-        ...prevWorkItem,
-        [name]: checked,
-      }));
+function App() {
+  const [userInfo, setUserInfo] = useState(USER_INFO_INITIAL_VALUE);
+  const [lists, setLists] = useState(USER_INFO_INITIAL_LISTS);
+
+  function resetUserInfo() {
+    setUserInfo(USER_INFO_INITIAL_VALUE);
+  }
+
+  function handleChangeValue(event) {
+    let { name, value } = event.target;
+    const infoSection = event.target.dataset.section;
+
+    if (event.target.type === 'checkbox') {
+      value = event.target.checked;
     }
 
-    const { name, value } = e.target;
-    setWorkItem((prevWorkItem) => ({ ...prevWorkItem, [name]: value }));
-  };
-
-  function addWorkHandle() {
-    const id = uuid().slice(0, 8);
-    setWorkList((prevWorkList) => [...prevWorkList, { id: id, ...workItem }]);
+    setUserInfo((prevUserInfo) => {
+      const updatedSection = { ...prevUserInfo[infoSection], [name]: value };
+      const updatedUserInfo = {
+        ...prevUserInfo,
+        [infoSection]: updatedSection,
+      };
+      return updatedUserInfo;
+    });
   }
 
-  function editWorkHandle(e, id) {
-    if (e.target.id === 'isWorking') {
-      const { name, checked } = e.target;
-      return setWorkList((prevWorkList) =>
-        prevWorkList.map((item) => {
-          if (item.id === id) {
-            return { ...item, [name]: checked };
-          }
-          return item;
-        })
-      );
+  function handleCreateListItem(listName, infoSection) {
+    const listItem = { ...userInfo[infoSection] };
+
+    setLists((prevLists) => {
+      const updatedList = [
+        ...prevLists[listName],
+        { id: generateID(), ...listItem },
+      ];
+      const updatedLists = { ...prevLists, [listName]: updatedList };
+
+      return updatedLists;
+    });
+
+    resetUserInfo();
+  }
+
+  function handleDeleteListItem(listName, id) {
+    setLists((prevLists) => {
+      const fillteredList = [
+        ...prevLists[listName].filter((item) => item.id !== id),
+      ];
+
+      const updatedLists = { ...prevLists, [listName]: fillteredList };
+
+      return updatedLists;
+    });
+  }
+
+  function handleEditListItem(event, listName, id) {
+    let { name, value } = event.target;
+
+    if (event.target.type === 'checkbox') {
+      value = event.target.checked;
     }
 
-    const { name, value } = e.target;
+    setLists((prevLists) => {
+      const updatedList = prevLists[listName].map((item) => {
+        if (item.id === id) return { ...item, [name]: value };
+      });
 
-    setWorkList((prevWorkList) =>
-      prevWorkList.map((item) => {
-        if (item.id === id) {
-          return { ...item, [name]: value };
-        }
-        return item;
-      })
-    );
-  }
+      const updatedLists = { ...prevLists, [listName]: updatedList };
 
-  function deleteWorkHandle(e, id) {
-    e.preventDefault();
-    setWorkList((prevWorkList) =>
-      prevWorkList.filter((work) => work.id !== id)
-    );
-  }
-
-  function eduItemChangeHandle(e) {
-    if (e.target.id === 'isStudying') {
-      const { name, checked } = e.target;
-      return setEduItem((prevEduItem) => ({
-        ...prevEduItem,
-        [name]: checked,
-      }));
-    }
-
-    const { name, value } = e.target;
-    setEduItem((prevEduItem) => ({ ...prevEduItem, [name]: value }));
-  }
-
-  function addEduHandle() {
-    const id = uuid().slice(0, 8);
-    setEduList((prevEduList) => [...prevEduList, { id: id, ...eduItem }]);
-  }
-
-  function editEduHandle(e, id) {
-    if (e.target.id === 'isStudying') {
-      const { name, checked } = e.target;
-      return setEduList((prevEduList) =>
-        prevEduList.map((item) => {
-          if (item.id === id) {
-            return { ...item, [name]: checked };
-          }
-          return item;
-        })
-      );
-    }
-
-    const { name, value } = e.target;
-
-    setEduList((prevEduList) =>
-      prevEduList.map((item) => {
-        if (item.id === id) {
-          return { ...item, [name]: value };
-        }
-        return item;
-      })
-    );
-  }
-
-  function deleteEduHandle(e, id) {
-    e.preventDefault();
-    setEduList((prevEduList) => prevEduList.filter((work) => work.id !== id));
-  }
-
-  function skillItemChangeHandle(e) {
-    const { name, value } = e.target;
-    setSkillItem((prevSkillItem) => ({
-      ...prevSkillItem,
-      [name]: value,
-    }));
-  }
-
-  function addSkillHandle() {
-    const id = uuid().slice(0, 8);
-    setSkillList((prevSkillList) => [
-      ...prevSkillList,
-      { id: id, ...skillItem },
-    ]);
-  }
-
-  function editSkillHandle(e, id) {
-    const { name, value } = e.target;
-
-    setSkillList((prevSkillList) =>
-      prevSkillList.map((item) => {
-        if (item.id === id) {
-          return { ...item, [name]: value };
-        }
-        return item;
-      })
-    );
-  }
-
-  function deleteSkillHandle(e, id) {
-    e.preventDefault();
-    setSkillList((prevSkillList) =>
-      prevSkillList.filter((skill) => skill.id !== id)
-    );
+      return updatedLists;
+    });
   }
 
   return (
@@ -204,37 +136,39 @@ function App() {
       </header>
       <aside className='aside'>
         <Form>
-          <GeneralInfo onChange={generalInfoChangeHandle} />
-          <ProfileInfo onChange={generalInfoChangeHandle} />
+          <GeneralInfo onValueChange={handleChangeValue} />
+          <ProfileInfo onValueChange={handleChangeValue} />
           <WorkInfo
-            editItemHandle={editWorkHandle}
-            deleteItemHandle={deleteWorkHandle}
-            createItemHandle={addWorkHandle}
-            onChange={workItemChangeHandle}
-            list={workList}
+            onValueChange={handleChangeValue}
+            onCreateItem={handleCreateListItem}
+            onDeleteItem={handleDeleteListItem}
+            onEditItem={handleEditListItem}
+            workList={lists.workList}
           />
           <EduInfo
-            editItemHandle={editEduHandle}
-            deleteItemHandle={deleteEduHandle}
-            createItemHandle={addEduHandle}
-            onChange={eduItemChangeHandle}
-            list={eduList}
+            onValueChange={handleChangeValue}
+            onCreateItem={handleCreateListItem}
+            onDeleteItem={handleDeleteListItem}
+            onEditItem={handleEditListItem}
+            eduList={lists.eduList}
           />
-          <SkillInfo
+
+          {/*     <SkillInfo
             editItemHandle={editSkillHandle}
             deleteItemHandle={deleteSkillHandle}
             createItemHandle={addSkillHandle}
             onChange={skillItemChangeHandle}
             list={skillList}
-          />
+          /> */}
         </Form>
       </aside>
       <main className='main flex flex-center'>
         <CVPreview
-          generalInfo={generalInfo}
-          workList={workList}
-          eduList={eduList}
-          skillList={skillList}
+          generalInfo={userInfo.generalInfo}
+          profileInfo={userInfo.profileInfo}
+          workList={lists.workList}
+          eduList={lists.eduList}
+          // skillList={skillList}
         />
       </main>
     </>

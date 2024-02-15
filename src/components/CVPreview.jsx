@@ -4,9 +4,10 @@ import './CVPreview.scss';
 
 export default function CVPreview({
   generalInfo,
+  profileInfo,
   workList,
   eduList,
-  skillList,
+  // skillList,
 }) {
   let fullName = (generalInfo.firstName || generalInfo.lastName) && (
     <>
@@ -57,7 +58,7 @@ export default function CVPreview({
       <h2 className='cv-preview__title'>
         {generalInfo.firstName} {generalInfo.lastName}
       </h2>
-      <p className='profile-info'>{generalInfo.profile}</p>
+      <p className='profile-info'>{profileInfo.profile}</p>
       <div className='personal-info'>
         <h3 className='personal-info__title title--section'>Dane osobowe</h3>
         <p className='info'>{fullName}</p>
@@ -75,7 +76,7 @@ export default function CVPreview({
           <div key={work.id} className='work-item'>
             <p className='work-item__dates bold'>
               {work.startDate && getMonthYear(work.startDate)} -
-              {work.isWorking
+              {work.isFinished
                 ? ' obecnie'
                 : work.endDate && getMonthYear(work.endDate)}
             </p>
@@ -95,7 +96,7 @@ export default function CVPreview({
           <div key={edu.id} className='edu-item'>
             <p className='edu-item__dates bold'>
               {edu.startDate && getMonthYear(edu.startDate)} -
-              {edu.isStudying
+              {edu.isFinished
                 ? ' obecnie'
                 : edu.endDate && getMonthYear(edu.endDate)}
             </p>
@@ -109,9 +110,9 @@ export default function CVPreview({
           </div>
         ))}
       </div>
-      <div className='skill-info'>
+      {/*  <div className='skill-info'>
         <h3 className='skill-info__title title--section'>Umiejętności</h3>
-      </div>
+      </div> */}
     </div>
   );
 }

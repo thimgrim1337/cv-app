@@ -20,8 +20,7 @@
         grid-column: 2 span;
       }
 
-      &[for='isWorking'],
-      &[for='isStudying'] {
+      &[for='isFinished'] {
         display: flex;
         align-items: center;
         gap: 0.6rem;

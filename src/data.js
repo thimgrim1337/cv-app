@@ -94,7 +94,7 @@ export const WORK_INFO = [
     },
     {
       text: 'Pracuję obecnie',
-      id: 'isWorking',
+      id: 'isFinished',
       type: 'checkbox',
     },
   ],
@@ -133,7 +133,7 @@ export const EDUCATION_INFO = [
     },
     {
       text: 'Studiuję obecnie',
-      id: 'isStudying',
+      id: 'isFinished',
       type: 'checkbox',
     },
   ],
