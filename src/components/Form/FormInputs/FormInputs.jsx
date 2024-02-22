@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import FormInput from './FormInput';
-// import FormRadio from './FormRadio';
 
 export default function FormInputs({
   fields,
@@ -8,6 +7,7 @@ export default function FormInputs({
   onCheckboxClick,
   isChecked,
   sectionName,
+  children,
   ...props
 }) {
   return (
@@ -23,6 +23,7 @@ export default function FormInputs({
           {...props}
         />
       ))}
+      {children}
     </div>
   );
 }

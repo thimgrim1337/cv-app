@@ -17,7 +17,7 @@ export default function FormListItemEdit({
         sectionName={sectionName}
         isChecked={props.isFinished}
         {...props}
-      />
+      ></FormInputs>
     </FormSection>
   );
 }

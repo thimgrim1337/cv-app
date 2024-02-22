@@ -6,7 +6,7 @@ import GeneralInfo from './components/GeneralInfo';
 import ProfileInfo from './components/ProfileInfo';
 import WorkInfo from './components/WorkInfo';
 import EduInfo from './components/EduInfo';
-// import SkillInfo from './components/SkillInfo';
+import SkillInfo from './components/SkillInfo';
 
 const USER_INFO_INITIAL_VALUE = {
   generalInfo: {
@@ -79,6 +79,7 @@ function App() {
         ...prevUserInfo,
         [infoSection]: updatedSection,
       };
+
       return updatedUserInfo;
     });
   }
@@ -91,6 +92,7 @@ function App() {
         ...prevLists[listName],
         { id: generateID(), ...listItem },
       ];
+
       const updatedLists = { ...prevLists, [listName]: updatedList };
 
       return updatedLists;
@@ -153,13 +155,13 @@ function App() {
             eduList={lists.eduList}
           />
 
-          {/*     <SkillInfo
-            editItemHandle={editSkillHandle}
-            deleteItemHandle={deleteSkillHandle}
-            createItemHandle={addSkillHandle}
-            onChange={skillItemChangeHandle}
-            list={skillList}
-          /> */}
+          <SkillInfo
+            onValueChange={handleChangeValue}
+            onCreateItem={handleCreateListItem}
+            onDeleteItem={handleDeleteListItem}
+            onEditItem={handleEditListItem}
+            skillList={lists.skillList}
+          />
         </Form>
       </aside>
       <main className='main flex flex-center'>
@@ -168,7 +170,7 @@ function App() {
           profileInfo={userInfo.profileInfo}
           workList={lists.workList}
           eduList={lists.eduList}
-          // skillList={skillList}
+          skillList={lists.skillList}
         />
       </main>
     </>

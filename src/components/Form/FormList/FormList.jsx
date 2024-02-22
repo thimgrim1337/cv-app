@@ -11,6 +11,7 @@ export default function FormList({
   onDeleteItem,
   onEditItem,
   onValueChange,
+  Radio,
 }) {
   const items =
     list &&
@@ -22,6 +23,7 @@ export default function FormList({
         onEditItem={onEditItem}
         fields={fields}
         listName={list.name}
+        Radio={Radio}
       />
     ));
 
@@ -34,6 +36,7 @@ export default function FormList({
         onValueChange={onValueChange}
         list={list}
         fields={fields}
+        Radio={Radio}
       />
     </>
   );

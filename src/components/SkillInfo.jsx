@@ -1,26 +1,32 @@
 /* eslint-disable react/prop-types */
 import { SKILLS_INFO } from '../data';
-import FormList from './Form/FormList';
+import FormRadio from './Form/FormInputs/FormRadio';
+import FormList from './Form/FormList/FormList';
 import FormSection from './Form/FormSection';
 
 export default function SkillInfo({
-  editItemHandle,
-  deleteItemHandle,
-  createItemHandle,
-  list,
-  ...props
+  onValueChange,
+  onCreateItem,
+  onDeleteItem,
+  onEditItem,
+  skillList,
 }) {
+  const list = {
+    name: 'skillList',
+    infoSection: 'skillInfo',
+    list: [...skillList],
+  };
+
   return (
     <FormSection className={'form__section'} {...SKILLS_INFO[0]}>
       <FormList
+        btnText={'Dodaj umiejętności'}
         list={list}
-        createItemHandle={createItemHandle}
-        editItemHandle={editItemHandle}
-        deleteItemHandle={deleteItemHandle}
+        onDeleteItem={onDeleteItem}
+        onCreateItem={onCreateItem}
+        onEditItem={onEditItem}
+        onValueChange={onValueChange}
         fields={SKILLS_INFO[1]}
-        createBtnText={'Dodaj doświadczenie zawodowe'}
-        radio={SKILLS_INFO[2]}
-        {...props}
       />
     </FormSection>
   );

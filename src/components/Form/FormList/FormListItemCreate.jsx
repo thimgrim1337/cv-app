@@ -10,6 +10,7 @@ export default function FormListItemCreate({
   onCreateItem,
   onValueChange,
   fields,
+  Radio,
 }) {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -29,7 +30,9 @@ export default function FormListItemCreate({
           sectionName={list.infoSection}
           onCheckboxClick={toggleIsChecked}
           isChecked={isChecked}
-        />
+        >
+          {Radio}
+        </FormInputs>
       </FormSection>
     </ToggleVisibility>
   );

@@ -8,6 +8,7 @@ export default function FormListItem({
   fields,
   onDeleteItem,
   onEditItem,
+  Radio,
   ...props
 }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -43,6 +44,7 @@ export default function FormListItem({
         <FormListItemEdit
           fields={fields}
           onEditItem={(e) => onEditItem(e, listName, id)}
+          Radio={Radio}
           {...props}
         />
       )}

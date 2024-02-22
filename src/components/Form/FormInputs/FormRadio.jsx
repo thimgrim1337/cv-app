@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-
 import { useState } from 'react';
+import FormInput from './FormInput';
 import './FormRadio.scss';
 
-export default function FormRadio({ fields, ...props }) {
-  console.log(props);
+export default function FormRadio({ fields, dataSection, onValueChange }) {
   const [selectedValue, setSelectedValue] = useState('Początkujący');
 
   function selectValueHandle(e) {
@@ -12,45 +11,21 @@ export default function FormRadio({ fields, ...props }) {
   }
 
   const inputs = fields.map((field, index) => (
-    <RadioInput
+    <FormInput
       key={field.id + index}
       index={index}
       {...field}
-      selectInput={selectValueHandle}
+      dataSection={dataSection}
       className={selectedValue === field.text ? 'active' : ''}
-      onChange={props.onChange}
+      onValueChange={onValueChange}
+      onRadioClick={selectValueHandle}
     />
   ));
 
   return (
     <div className='form__radio radio'>
       <p className='radio__value'>{selectedValue}</p>
-      <div className='radio__input'>{inputs}</div>
+      <div className='radio__inputs'>{inputs}</div>
     </div>
-  );
-}
-
-function RadioInput({
-  text,
-  id,
-  type,
-  index,
-  selectInput,
-  className,
-  ...props
-}) {
-  return (
-    <>
-      <label htmlFor={id + index} className={className}>
-        <input
-          type={type}
-          name={id}
-          id={id + index}
-          value={text}
-          onClick={selectInput}
-          {...props}
-        />
-      </label>
-    </>
   );
 }
