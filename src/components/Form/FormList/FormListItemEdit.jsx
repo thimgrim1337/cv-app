@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import { SKILLS_INFO } from '../../../data';
 import FormInputs from '../FormInputs/FormInputs';
+import FormRadio from '../FormInputs/FormRadio';
 import FormSection from '../FormSection';
 
 export default function FormListItemEdit({
@@ -7,6 +9,7 @@ export default function FormListItemEdit({
   className,
   sectionName,
   onEditItem,
+  Radio,
   ...props
 }) {
   return (
@@ -17,7 +20,16 @@ export default function FormListItemEdit({
         sectionName={sectionName}
         isChecked={props.isFinished}
         {...props}
-      ></FormInputs>
+      >
+        {Radio && (
+          <FormRadio
+            fields={SKILLS_INFO[2]}
+            onValueChange={onEditItem}
+            dataSection={sectionName}
+            {...props}
+          />
+        )}
+      </FormInputs>
     </FormSection>
   );
 }

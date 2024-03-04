@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { WORK_INFO } from '../data';
-import FormList from './Form/FormList/FormList';
-import FormSection from './Form/FormSection';
+import { WORK_INFO } from '../../../data';
+import FormList from '../FormList/FormList';
+import FormSection from '../FormSection';
 
 export default function WorkInfo({
   onValueChange,

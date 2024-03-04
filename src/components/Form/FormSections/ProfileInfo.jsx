@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import { PROFILE_INFO } from '../data';
-import FormSection from './Form/FormSection';
-import FormTextarea from './Form/FormTextarea';
+import { PROFILE_INFO } from '../../../data';
+import FormTextarea from '../FormInputs/FormTextarea';
+import FormSection from '../FormSection';
 
 export default function ProfileInfo({ onValueChange }) {
   return (

@@ -3,8 +3,17 @@ import { useState } from 'react';
 import FormInput from './FormInput';
 import './FormRadio.scss';
 
-export default function FormRadio({ fields, dataSection, onValueChange }) {
-  const [selectedValue, setSelectedValue] = useState('Początkujący');
+export default function FormRadio({
+  fields,
+  dataSection,
+  onValueChange,
+  ...props
+}) {
+  const INITIAL_VALUE = 'Początkujący';
+
+  const [selectedValue, setSelectedValue] = useState(
+    props.level || INITIAL_VALUE
+  );
 
   function selectValueHandle(e) {
     setSelectedValue(e.target.value);

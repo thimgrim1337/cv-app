@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { GENERAL_INFO } from '../data';
-import FormSection from './Form/FormSection';
-import ToggleVisibility from './ToggleVisibility';
-import FormInputs from './Form/FormInputs/FormInputs';
+import { GENERAL_INFO } from '../../../data';
+import FormSection from '../FormSection';
+import ToggleVisibility from '../../ToggleVisibility';
+import FormInputs from '../FormInputs/FormInputs';
 
 export default function GeneralInfo({ onValueChange }) {
   return (
