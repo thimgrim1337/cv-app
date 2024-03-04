@@ -62,7 +62,14 @@ function App() {
   const [lists, setLists] = useState(USER_INFO_INITIAL_LISTS);
 
   function resetUserInfo() {
-    setUserInfo(USER_INFO_INITIAL_VALUE);
+    setUserInfo((prevUserInfo) => {
+      return {
+        ...prevUserInfo,
+        ['workInfo']: USER_INFO_INITIAL_VALUE.workInfo,
+        ['eduInfo']: USER_INFO_INITIAL_VALUE.eduInfo,
+        ['skillInfo']: USER_INFO_INITIAL_VALUE.skillInfo,
+      };
+    });
   }
 
   function handleChangeValue(event) {
@@ -122,7 +129,11 @@ function App() {
 
     setLists((prevLists) => {
       const updatedList = prevLists[listName].map((item) => {
-        if (item.id === id) return { ...item, [name]: value };
+        if (item.id === id) {
+          return { ...item, [name]: value };
+        } else {
+          return item;
+        }
       });
 
       const updatedLists = { ...prevLists, [listName]: updatedList };

@@ -25,7 +25,7 @@ export default function FormListItemEdit({
           <FormRadio
             fields={SKILLS_INFO[2]}
             onValueChange={onEditItem}
-            dataSection={sectionName}
+            sectionName={sectionName}
             {...props}
           />
         )}

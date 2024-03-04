@@ -13,9 +13,11 @@ export default function SkillInfo({
 }) {
   const list = {
     name: 'skillList',
-    infoSection: 'skillInfo',
+    sectionName: 'skillInfo',
     list: [...skillList],
   };
+
+  console.log(list.list);
 
   return (
     <FormSection className={'form__section'} {...SKILLS_INFO[0]}>
@@ -31,7 +33,7 @@ export default function SkillInfo({
           <FormRadio
             fields={SKILLS_INFO[2]}
             onValueChange={onValueChange}
-            dataSection={list.infoSection}
+            sectionName={list.sectionName}
           />
         }
       />

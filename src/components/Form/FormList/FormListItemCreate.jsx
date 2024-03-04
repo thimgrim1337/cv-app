@@ -21,13 +21,13 @@ export default function FormListItemCreate({
   return (
     <ToggleVisibility
       btnText={btnText}
-      onClick={() => onCreateItem(list.name, list.infoSection)}
+      onClick={() => onCreateItem(list.name, list.sectionName)}
     >
       <FormSection className={'list__new-item'}>
         <FormInputs
           fields={fields}
           onValueChange={onValueChange}
-          sectionName={list.infoSection}
+          sectionName={list.sectionName}
           onCheckboxClick={toggleIsChecked}
           isChecked={isChecked}
         >

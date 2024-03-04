@@ -5,7 +5,7 @@ import './FormRadio.scss';
 
 export default function FormRadio({
   fields,
-  dataSection,
+  sectionName,
   onValueChange,
   ...props
 }) {
@@ -24,7 +24,7 @@ export default function FormRadio({
       key={field.id + index}
       index={index}
       {...field}
-      dataSection={dataSection}
+      dataSection={sectionName}
       className={selectedValue === field.text ? 'active' : ''}
       onValueChange={onValueChange}
       onRadioClick={selectValueHandle}

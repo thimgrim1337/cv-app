@@ -12,7 +12,7 @@ export default function EduInfo({
 }) {
   const list = {
     name: 'eduList',
-    infoSection: 'eduInfo',
+    sectionName: 'eduInfo',
     list: eduList,
   };
 

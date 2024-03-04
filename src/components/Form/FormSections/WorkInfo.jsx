@@ -12,7 +12,7 @@ export default function WorkInfo({
 }) {
   const list = {
     name: 'workList',
-    infoSection: 'workInfo',
+    sectionName: 'workInfo',
     list: [...workList],
   };
 
