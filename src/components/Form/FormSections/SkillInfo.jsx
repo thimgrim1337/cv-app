@@ -17,8 +17,6 @@ export default function SkillInfo({
     list: [...skillList],
   };
 
-  console.log(list.list);
-
   return (
     <FormSection className={'form__section'} {...SKILLS_INFO[0]}>
       <FormList

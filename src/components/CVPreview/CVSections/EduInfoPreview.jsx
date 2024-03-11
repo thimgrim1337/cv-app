@@ -8,7 +8,9 @@ export default function EduInfoPreview({ eduList }) {
       {eduList.map((edu) => (
         <div key={edu.id} className='edu-item'>
           <p className='edu-item__dates bold'>
-            {edu.startDate && getMonthYear(edu.startDate)} -
+            <span className='startDate'>
+              {edu.startDate && getMonthYear(edu.startDate)}
+            </span>
             {edu.isFinished
               ? ' obecnie'
               : edu.endDate && getMonthYear(edu.endDate)}

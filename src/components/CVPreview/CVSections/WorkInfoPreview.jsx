@@ -11,7 +11,9 @@ export default function WorkInfoPreview({ workList }) {
       {workList.map((work) => (
         <div key={work.id} className='work-item'>
           <p className='work-item__dates bold'>
-            {work.startDate && getMonthYear(work.startDate)} -
+            <span className='startDate'>
+              {work.startDate && getMonthYear(work.startDate)}
+            </span>
             {work.isFinished
               ? ' obecnie'
               : work.endDate && getMonthYear(work.endDate)}
