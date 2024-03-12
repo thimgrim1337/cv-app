@@ -17,7 +17,10 @@ export default function EduInfo({
   };
 
   return (
-    <FormSection className={'form__section'} {...EDUCATION_INFO[0]}>
+    <FormSection
+      className={'form__section form__section--edu'}
+      {...EDUCATION_INFO[0]}
+    >
       <FormList
         btnText={'Dodaj wykształcenie'}
         list={list}

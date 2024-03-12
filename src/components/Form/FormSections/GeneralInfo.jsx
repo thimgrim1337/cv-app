@@ -6,7 +6,10 @@ import FormInputs from '../FormInputs/FormInputs';
 
 export default function GeneralInfo({ onValueChange }) {
   return (
-    <FormSection className={'form__section'} {...GENERAL_INFO[0]}>
+    <FormSection
+      className={'form__section form__section--general'}
+      {...GENERAL_INFO[0]}
+    >
       <FormInputs
         fields={GENERAL_INFO[1]}
         onValueChange={onValueChange}
@@ -16,7 +19,7 @@ export default function GeneralInfo({ onValueChange }) {
         btnText={'Pokaż więcej opcji'}
         icon={<i className='fa-solid fa-chevron-down'></i>}
       >
-        <FormSection className={'more-info'}>
+        <FormSection>
           <FormInputs
             fields={GENERAL_INFO[2]}
             onValueChange={onValueChange}

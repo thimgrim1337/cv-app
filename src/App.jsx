@@ -8,6 +8,7 @@ import ProfileInfo from './components/Form/FormSections/ProfileInfo';
 import WorkInfo from './components/Form/FormSections/WorkInfo';
 import EduInfo from './components/Form/FormSections/EduInfo';
 import SkillInfo from './components/Form/FormSections/SkillInfo';
+import Button from './components/Button';
 
 const USER_INFO_INITIAL_VALUE = {
   generalInfo: {
@@ -191,9 +192,11 @@ function App() {
           skillList={lists.skillList}
           refrence={printRef}
         />
-        <button className='btn--print' onClick={handlePrint}>
-          <i className='fa-solid fa-print'></i>
-        </button>
+        <Button
+          className='button--print'
+          onClick={handlePrint}
+          icon={<i className='fa-solid fa-print'></i>}
+        />
       </main>
     </>
   );

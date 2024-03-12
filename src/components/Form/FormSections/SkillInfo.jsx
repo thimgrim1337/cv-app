@@ -18,7 +18,10 @@ export default function SkillInfo({
   };
 
   return (
-    <FormSection className={'form__section'} {...SKILLS_INFO[0]}>
+    <FormSection
+      className={'form__section form__section--skill'}
+      {...SKILLS_INFO[0]}
+    >
       <FormList
         btnText={'Dodaj umiejętności'}
         list={list}

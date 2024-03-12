@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
-import './ToggleVisibility.scss';
+import Button from './Button';
 
 export default function ToggleVisibility({ children, btnText, onClick, icon }) {
   const [isShow, setIsShow] = useState(false);
@@ -15,19 +15,19 @@ export default function ToggleVisibility({ children, btnText, onClick, icon }) {
     }
   }
 
-  const btn = btnText && (
-    <button className='form__button' onClick={toggleShow}>
-      {btnText}
-      <span className={isShow ? 'button__icon active' : 'button__icon'}>
-        {icon}
-      </span>
-    </button>
-  );
-
   return (
     <>
-      {isShow && children}
-      {btn}
+      {
+        <div className={isShow ? 'more-info active' : 'more-info'}>
+          {children}
+        </div>
+      }
+      <Button
+        className={isShow ? 'button--primary active' : 'button--primary'}
+        onClick={toggleShow}
+        text={btnText}
+        icon={icon}
+      />
     </>
   );
 }

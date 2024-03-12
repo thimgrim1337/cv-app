@@ -17,7 +17,10 @@ export default function WorkInfo({
   };
 
   return (
-    <FormSection className={'form__section'} {...WORK_INFO[0]}>
+    <FormSection
+      className={'form__section form__section--work'}
+      {...WORK_INFO[0]}
+    >
       <FormList
         btnText={'Dodaj doświadczenie zawodowe'}
         list={list}

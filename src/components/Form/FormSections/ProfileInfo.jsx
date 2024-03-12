@@ -5,7 +5,10 @@ import FormSection from '../FormSection';
 
 export default function ProfileInfo({ onValueChange }) {
   return (
-    <FormSection className='form__section' {...PROFILE_INFO}>
+    <FormSection
+      className='form__section form__section--profile'
+      {...PROFILE_INFO}
+    >
       <FormTextarea
         id={'profile'}
         onValueChange={onValueChange}

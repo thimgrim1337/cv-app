@@ -1,0 +1,39 @@
+.button {
+
+    &--primary {
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      background: none;
+      border: none;
+      margin-block: 1rem;
+      cursor: pointer;
+      color: rgb(188, 0, 0);
+
+      &.active i {
+        transform: rotate(180deg);
+      }
+
+      .button__icon {
+        i {
+            transition: 1.2s;
+        }
+        
+        font-size: 1.1rem;
+      }
+    }
+
+    &--print {
+        position: absolute;
+        bottom: 4rem;
+        right: 15rem;
+        width: 5rem;
+        height: 5rem;
+        border: 1px solid #ccc;
+        border-radius: 50px;
+
+        .button__icon {
+            font-size: 2rem;
+        }
+    }
+}
