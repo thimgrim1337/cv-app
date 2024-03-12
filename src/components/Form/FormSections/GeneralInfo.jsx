@@ -12,7 +12,10 @@ export default function GeneralInfo({ onValueChange }) {
         onValueChange={onValueChange}
         sectionName={'generalInfo'}
       />
-      <ToggleVisibility btnText={'Pokaż więcej opcji'}>
+      <ToggleVisibility
+        btnText={'Pokaż więcej opcji'}
+        icon={<i className='fa-solid fa-chevron-down'></i>}
+      >
         <FormSection className={'more-info'}>
           <FormInputs
             fields={GENERAL_INFO[2]}

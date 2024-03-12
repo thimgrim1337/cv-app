@@ -22,6 +22,7 @@ export default function FormListItemCreate({
     <ToggleVisibility
       btnText={btnText}
       onClick={() => onCreateItem(list.name, list.sectionName)}
+      icon={<i className='fa-solid fa-circle-plus'></i>}
     >
       <FormSection className={'list__new-item'}>
         <FormInputs

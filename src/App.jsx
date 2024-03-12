@@ -1,7 +1,8 @@
+import { useState, useRef } from 'react';
+import uuid from 'react-uuid';
+import { useReactToPrint } from 'react-to-print';
 import Form from './components/Form/Form';
 import CVPreview from './components/CVPreview/CVPreview';
-import { useState } from 'react';
-import uuid from 'react-uuid';
 import GeneralInfo from './components/Form/FormSections/GeneralInfo';
 import ProfileInfo from './components/Form/FormSections/ProfileInfo';
 import WorkInfo from './components/Form/FormSections/WorkInfo';
@@ -142,6 +143,12 @@ function App() {
     });
   }
 
+  const printRef = useRef();
+  const handlePrint = useReactToPrint({
+    bodyClass: 'print',
+    content: () => printRef.current,
+  });
+
   return (
     <>
       <header className='header'>
@@ -182,7 +189,11 @@ function App() {
           workList={lists.workList}
           eduList={lists.eduList}
           skillList={lists.skillList}
+          refrence={printRef}
         />
+        <button className='btn--print' onClick={handlePrint}>
+          <i className='fa-solid fa-print'></i>
+        </button>
       </main>
     </>
   );

@@ -11,9 +11,10 @@ export default function CVPreview({
   workList,
   eduList,
   skillList,
+  refrence,
 }) {
   return (
-    <div className='cv-preview '>
+    <div ref={refrence} className='cv-preview'>
       <PersonalInfoPreview
         generalInfo={generalInfo}
         profileInfo={profileInfo}
