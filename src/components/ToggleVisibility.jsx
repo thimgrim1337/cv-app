@@ -19,7 +19,7 @@ export default function ToggleVisibility({ children, btnText, onClick, icon }) {
     <>
       {
         <div className={isShow ? 'more-info active' : 'more-info'}>
-          {children}
+          {isShow && children}
         </div>
       }
       <Button

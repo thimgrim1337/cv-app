@@ -46,6 +46,7 @@ ul {
 }
 
 .main {
+  position: relative;
   background-color: #f4f4f4;
   max-height: 90vh;
 }
@@ -63,3 +64,19 @@ ul {
   font-weight: bold;
 }
 
+@media (max-width: 800px) {
+  #root {
+    display: block;
+  }
+
+  .button--print {
+    right: 2rem;
+    bottom: 2rem;
+    width: 4rem;
+    height: 4rem;
+
+    .button__icon {
+      font-size: 1.4rem;
+    }
+  }
+}
